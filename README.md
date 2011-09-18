@@ -4,7 +4,7 @@ Javascript AudioFX (v0.2.0)
 Simple HTML5 `<audio>` support.
 
  * Easily `play()` and `stop()` any audio track.
- * Add support for `<audio>` **pools** for short, repeating, overlapping sounds.
+ * Add support for audio **pools** for short, repeating, overlapping sounds.
  * Add support for `loop` in browsers that don't natively support it.
  * Load appropriate audio format based on current browser support.
  * Callback when audio has loaded and `canplay`
@@ -105,7 +105,13 @@ but does not have support for creating an `<audio>` **pool**.
 ... I should probably just be forking buzz and trying to add pooling support to it, but I haven't
 had the time yet. If you have any thoughts let me know ! 
 
-Very Early experimentation. YMMV
+Also note that browser support for HTML5 audio is still pretty messed up. This library works pretty
+well in most modern desktop browsers, IE9, Chrome13, FF5, Opera11, but Safari continues to have delays
+that make short sounds unusable. Also mobile browsers are very limited in their support for HTML5 Audio.
+
+You can find an example rant [here](http://www.phoboslab.org/log/2011/03/the-state-of-html5-audio).
+
+So... Very Early experimentation. YMMV
 
 License
 =======
