@@ -9,6 +9,8 @@ Simple HTML5 `<audio>` support.
  * Load appropriate audio format based on current browser support.
  * Callback when audio has loaded and `canplay`
 
+You can find an article about how the library works [here](http://codeincomplete.com/posts/2011/9/17/revisiting_html5_audio/)
+
 Download
 ========
 
