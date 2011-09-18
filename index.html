@@ -15,9 +15,9 @@
   <script src="audio-fx.js"></script>
   <script>
 
-    var music  = AudioFX('sounds/music',      { formats: ['ogg', 'mp3'], loop: true, volume: 0.2 }, function() { music.play(); });
-    var pool   = AudioFX('sounds/pool',       { formats: ['ogg', 'mp3'], pool: 20,   volume: 0.2 });
-    var single = AudioFX('sounds/single.ogg', {                                      volume: 0.2 });
+    var music  = AudioFX('sounds/music',      { formats: ['ogg', 'mp3'], volume: 0.2, loop: true, autoplay: true });
+    var pool   = AudioFX('sounds/pool',       { formats: ['ogg', 'mp3'], volume: 0.2, pool: 20                   });
+    var single = AudioFX('sounds/single.ogg', {                          volume: 0.2                             });
 
   </script>
 

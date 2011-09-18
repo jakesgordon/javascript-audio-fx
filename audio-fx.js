@@ -2,7 +2,7 @@ AudioFX = function() {
 
   //---------------------------------------------------------------------------
 
-  var VERSION = '0.0.1';
+  var VERSION = '0.2.0';
 
   //---------------------------------------------------------------------------
 
@@ -33,9 +33,10 @@ AudioFX = function() {
     if (options.loop && !hasAudio.loop)
       audio.addEventListener('ended', function() { audio.currentTime = 0; audio.play(); }, false);
 
-    audio.volume = options.volume || 0.2;
-    audio.loop   = options.loop;
-    audio.src    = src;
+    audio.volume   = options.volume || 0.2;
+    audio.autoplay = options.autoplay;
+    audio.loop     = options.loop;
+    audio.src      = src;
 
     return audio;
   }
@@ -104,8 +105,8 @@ AudioFX = function() {
 
   //---------------------------------------------------------------------------
 
-  factory.version = VERSION;
-  factory.enabled = hasAudio;
+  factory.version   = VERSION;
+  factory.supported = hasAudio;
 
   return factory;
 

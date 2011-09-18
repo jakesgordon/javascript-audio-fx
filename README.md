@@ -1,17 +1,111 @@
-Javascript AudioFX (v0.0.1)
+Javascript AudioFX (v0.2.0)
 ===========================
 
-Experimenting with a tiny library to abstract away the complications with HTML5 Audio.
+Simple HTML5 `<audio>` support.
 
-Similar to [buzz](http://buzz.jaysalvat.com/) but simpler and include support
-for pools of audio tags (for short FX that need to be played multiple overlapping times)...
+ * Easily `play()` and `stop()` any audio track.
+ * Add support for `<audio>` **pools** for short, repeating, overlapping sounds.
+ * Add support for `loop` in browsers that don't natively support it.
+ * Load appropriate audio format based on current browser support.
+ * Callback when audio has loaded and `canplay`
 
-... I should probably just be forking buzz and trying to add pooling support to it, but 
-I haven't had the time yet.
+Download
+========
 
-Very Early experimentation, no documentation or blog articles yet.
+You can download [audio-fx.js](https://github.com/jakesgordon/javascript-audio-fx/raw/master/audio-fx.js), or
+get the minified version [here](https://github.com/jakesgordon/javascript-audio-fx/raw/master/audio-fx.min.js)
 
-YMMV
+Alternatively:
+
+    git clone git@github.com:jakesgordon/javascript-audio-fx
+
+ * All code is in audio-fx.js
+ * Minified version available in audio-fx.min.js
+ * Less than 1.2K (minified)
+ * No 3rd party library is required
+ * Demo can be found in /index.html
+
+Usage
+=====
+
+Include `audio-fx.js` in your application.
+
+In its simplest form, load music by constructing an `AudioFX` object:
+
+    var music = AudioFX('sounds/music.mp3');
+
+The `AudioFX` instance has the simplest possible API:
+
+    music.play();     // play the audio
+    music.stop();     // stop the audio
+    music.audio;      // the underlying <audio> tag
+
+**However**, different browsers support different formats so you should provide at
+least `ogg` and `mp3` formats if you want to support a broad range of browsers:
+
+    var music = AudioFX('sounds/music', { formats: ['ogg', 'mp3'] });
+
+Other options include `volume`, `loop` and `autoplay`:
+
+    var music = AudioFX('sounds/music', {
+                          formats: ['ogg', 'mp3', 'wav'],
+                          volume:   0.5,
+                          loop:     true,
+                          autoplay: true });
+
+Audio Pools
+===========
+
+If you want to play a short sound effect multiple overlapping times (e.g. game explosions and effects) then
+you need multiple `<audio>` tags.
+
+The AudioFX library provides this functionality by accepting a `pool` option:
+
+    var shoot = AudioFX('sounds/shoot', { formats: ['ogg', 'mp3'], pool: 10 });
+
+The `AudioFX` instance has the exact same API as above:
+
+    music.play();     // play the first available audio
+    music.stop();     // stop the audio
+    music.audio;      // an ARRAY containing the pool of underlying <audio> tag
+
+Waiting for Sounds to Load
+==========================
+
+The `AudioFX` method accepts an optional 3rd parameter that can contain a function that will be
+called when the `<audio>` tag has loaded:
+
+    var name    = 'sounds/music';
+    var options = { formats: ['ogg', 'mp3'] };
+    var onload  = function() { alert('music is ready'); }
+
+    var music = AudioFX(name, options, onload);
+
+BrowserSupport
+==============
+
+If necessary, you can examine the `AudioFX.supported` property to find out what kind of `<audio>` support
+is provided by your browser.
+
+It will be `false` if there is no support at all, otherwise it will contain:
+
+    AudioFx.supported.ogg;  // (true|false)
+    AudioFx.supported.mp3;  // (true|false)
+    AudioFx.supported.wav;  // (true|false)
+    AudioFx.supported.loop; // (true|false) - some browsers dont (yet) support the loop option
+
+
+NOTES
+=====
+
+After starting this project, I discovered the [buzz](http://buzz.jaysalvat.com/) library which also
+abstracts HTML5 `<audio>` functionality... and does it much more thoroughly than `javascript-audio-fx`
+but does not have support for creating an `<audio>` **pool**.
+
+... I should probably just be forking buzz and trying to add pooling support to it, but I haven't
+had the time yet. If you have any thoughts let me know ! 
+
+Very Early experimentation. YMMV
 
 License
 =======
