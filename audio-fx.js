@@ -2,7 +2,7 @@ AudioFX = function() {
 
   //---------------------------------------------------------------------------
 
-  var VERSION = '0.3.0';
+  var VERSION = '0.4.0';
 
   //---------------------------------------------------------------------------
 
@@ -11,6 +11,7 @@ AudioFX = function() {
     hasAudio = {
       ogg: audioSupported('audio/ogg; codecs="vorbis"'),
       mp3: audioSupported('audio/mpeg;'),
+      m4a: audioSupported('audio/x-m4a;') || audioSupported('audio/aac;'),
       wav: audioSupported('audio/wav; codecs="1"'),
       loop: (typeof audio.loop === 'boolean') // some browsers (FF) dont support loop yet
     }

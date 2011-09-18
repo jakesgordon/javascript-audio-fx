@@ -1,4 +1,4 @@
-Javascript AudioFX (v0.3.0)
+Javascript AudioFX (v0.4.0)
 ===========================
 
 Simple HTML5 `<audio>` support.
