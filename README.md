@@ -6,7 +6,7 @@ Simple HTML5 `<audio>` support.
  * Easily `play()` and `stop()` any audio track.
  * Add support for audio **pools** for short, repeating, overlapping sounds.
  * Add support for `loop` in browsers that don't natively support it.
- * Load appropriate audio format based on current browser support.
+ * Load appropriate audio format based on current browser support (ogg|mp3|m4a|wav)
  * Callback when audio has loaded and `canplay`
 
 You can find an article about how the library works [here](http://codeincomplete.com/posts/2011/9/17/revisiting_html5_audio/)
@@ -50,7 +50,7 @@ least `ogg` and `mp3` formats if you want to support a broad range of browsers:
 Other options include `volume`, `loop` and `autoplay`:
 
     var music = AudioFX('sounds/music', {
-                          formats: ['ogg', 'mp3', 'wav'],
+                          formats: ['ogg', 'mp3', 'm4a', 'wav'],
                           volume:   0.5,
                           loop:     true,
                           autoplay: true });
@@ -93,6 +93,7 @@ It will be `false` if there is no support at all, otherwise it will contain:
 
     AudioFx.supported.ogg;  // (true|false)
     AudioFx.supported.mp3;  // (true|false)
+    AudioFx.supported.m4a;  // (true|false)
     AudioFx.supported.wav;  // (true|false)
     AudioFx.supported.loop; // (true|false) - some browsers dont (yet) support the loop option
 
@@ -101,8 +102,8 @@ NOTES
 =====
 
 After starting this project, I discovered the [buzz](http://buzz.jaysalvat.com/) library which also
-abstracts HTML5 `<audio>` functionality... and does it much more thoroughly than `javascript-audio-fx`
-but does not have support for creating an `<audio>` **pool**.
+abstracts HTML5 audio functionality... and does it much more thoroughly than `audio-fx`
+but does not have support for creating an audio **pool**.
 
 ... I should probably just be forking buzz and trying to add pooling support to it, but I haven't
 had the time yet. If you have any thoughts let me know ! 
