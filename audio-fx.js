@@ -2,7 +2,7 @@ AudioFX = function() {
 
   //---------------------------------------------------------------------------
 
-  var VERSION = '0.2.0';
+  var VERSION = '0.3.0';
 
   //---------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ AudioFX = function() {
     if (options.loop && !hasAudio.loop)
       audio.addEventListener('ended', function() { audio.currentTime = 0; audio.play(); }, false);
 
-    audio.volume   = options.volume || 0.2;
+    audio.volume   = options.volume || 0.1;
     audio.autoplay = options.autoplay;
     audio.loop     = options.loop;
     audio.src      = src;
@@ -43,9 +43,35 @@ AudioFX = function() {
 
   //---------------------------------------------------------------------------
 
-  var wrapper = function(src, options, onload) {
+  var choose = function(formats) {
+    for(var n = 0 ; n < formats.length ; n++)
+      if (hasAudio && hasAudio[formats[n]])
+        return formats[n];
+  };
 
-    var pool = [];
+  //---------------------------------------------------------------------------
+
+  var find = function(audios) {
+    var n, audio;
+    for(n = 0 ; n < audios.length ; n++) {
+      audio = audios[n];
+      if (audio.paused || audio.ended)
+        return audio;
+    }
+  };
+
+  //---------------------------------------------------------------------------
+
+  var afx = function(src, options, onload) {
+
+    options = options || {};
+
+    var formats = options.formats || [],
+        format  = choose(formats),
+        pool    = [];
+
+    src = src + (format ? '.' + format : '');
+
     if (hasAudio) {
       for(var n = 0 ; n < (options.pool || 1) ; n++)
         pool.push(create(src, options, n == 0 ? onload : null));
@@ -54,21 +80,12 @@ AudioFX = function() {
       onload();
     }
 
-    var find = function() {
-      var n, audio;
-      for(n = 0 ; n < pool.length ; n++) {
-        audio = pool[n];
-        if (audio.paused || audio.ended)
-          return audio;
-      }
-    };
-
     return {
 
       audio: (pool.length == 1 ? pool[0] : pool),
 
       play: function() {
-        var audio = find();
+        var audio = find(pool);
         if (audio)
           audio.play();
       },
@@ -87,28 +104,10 @@ AudioFX = function() {
 
   //---------------------------------------------------------------------------
 
-  var factory = function(name, options, onload) {
-    options = options || {};
+  afx.version   = VERSION;
+  afx.supported = hasAudio;
 
-    var src = name, formats = options.formats;
-    if (formats) {
-      for(var n = 0 ; n < formats.length ; n++) {
-        if (hasAudio && hasAudio[formats[n]]) {
-          src = src + '.' + formats[n];
-          break;  
-        }
-      }
-    }
-
-    return wrapper(src, options, onload);
-  };
-
-  //---------------------------------------------------------------------------
-
-  factory.version   = VERSION;
-  factory.supported = hasAudio;
-
-  return factory;
+  return afx;
 
   //---------------------------------------------------------------------------
 
