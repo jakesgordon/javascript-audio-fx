@@ -118,7 +118,7 @@ So... Very Early experimentation. YMMV
 License
 =======
 
-[WTFPL](http://en.wikipedia.org/wiki/WTFPL)
+[MIT](http://en.wikipedia.org/wiki/MIT_License) license.
 
 Sample Sounds
 =============
