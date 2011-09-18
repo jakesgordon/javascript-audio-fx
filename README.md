@@ -16,7 +16,16 @@ YMMV
 License
 =======
 
-See [LICENSE](https://github.com/jakesgordon/javascript-audio-fx/blob/master/LICENSE.md) file.
+[WTFPL](http://en.wikipedia.org/wiki/WTFPL)
+
+Sample Sounds
+=============
+
+NOTE: the sample sounds included in this project are royalty free sounds licensed from
+[Lucky Lion Studios](http://luckylionstudios.com/) and [Premium Beat](http://www.premiumbeat.com/). They
+are licensed ONLY for use in this project. If you fork this code you must provide your own sample sounds.
+
+Thanks for your honesty!
 
 Contact
 =======
