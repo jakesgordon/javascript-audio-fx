@@ -9,7 +9,7 @@ Simple HTML5 `<audio>` support.
  * Load appropriate audio format based on current browser support (ogg|mp3|m4a|wav)
  * Callback when audio has loaded and `canplay`
 
-You can find an article about how the library works [here](http://codeincomplete.com/posts/2011/9/17/revisiting_html5_audio/)
+You can find an article about how the library works [here](https://jakesgordon.com/writing/revisiting-html5-audio/)
 
 Download
 ========
@@ -134,8 +134,8 @@ Contact
 =======
 
 If you have any ideas, feedback, requests or bug reports, you can reach me at
-[jake@codeincomplete.com](mailto:jake@codeincomplete.com), or via
-my website: [Code inComplete](http://codeincomplete.com/)
+[jakesgordon@gmail.com](mailto:jakesgordon@gmail.com), or via
+my website: [jakesgordon.com](https://jakesgordon.com/)
 
 
 
